@@ -11,21 +11,29 @@
       var fields = this.$el.find(':input'),
           data = {},
           d = [];
+      //clear errors in case we need to
+      $('.error',this.$el).removeClass('error');
+
       fields.each(function(){
         data[this.name] = this.value;
       });
-      d = data.dob.split('/');
       
-      data.dob = new Date(d[2], d[1], d[0]);
+      this.model.set(data, { error: _.bind(this.validationErrors, this)});
 
-      this.model.set(data);
-      this.collection.add(this.model);
-      
-      this.close();
+      if(this.model.isValid()){
+        this.collection.add(this.model);
+        this.close();
+      }
+    },
+
+    validationErrors: function(model, errors){
+      var me = this;
+      _.each(_.keys(errors), function(key, index){
+        $('#' + key + '-input', me.$el).parents('.control-group').addClass('error');
+      });
     },
 
     close: function(){
-      this.$el.find('form')[0].reset();
       this.$el.dialog('close');
 
       this.model = null;
@@ -43,7 +51,7 @@
         title:'Add Client',
         show: { effect: 'drop', direction: "up" },
         buttons: {
-          Ok: _.bind(this.save, this),
+          Save: _.bind(this.save, this),
           Cancel: _.bind(this.close, this)
         }
       });
