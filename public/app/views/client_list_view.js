@@ -39,8 +39,3 @@
   });
 
 }(flobn, _, Backbone, jQuery));
-/**
-var clients = new flobn.collection.Clients();
-var appView = new flobn.view.ClientList({collection: clients});
-clients.add({name: 'gigi',email:'aaa@aaa.aaa',dob: '10/10/1986'});
-*/

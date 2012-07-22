@@ -9,7 +9,7 @@
       App.collection = new flobn.collection.Clients();
       App.addView = new flobn.view.ClientFormView({collection: App.collection});
       App.listView = new flobn.view.ClientListView({collection: App.collection});
-      
+      App.saerchView = new flobn.view.SearchBarView({collection: App.collection});
       App.collection.fetch();
       App.addView.render();
     }
