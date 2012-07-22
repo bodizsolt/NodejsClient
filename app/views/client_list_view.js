@@ -1,6 +1,6 @@
 (function(flobn, _, Backbone, $){
 
-  flobn.view.ClientList = Backbone.View.extend({
+  flobn.view.ClientListView = Backbone.View.extend({
     el: $('#client-list'),
 
     initialize: function(){
