@@ -18,6 +18,7 @@
         data[this.name] = this.value;
       });
       var me = this;
+      this.model.collection = this.collection;
       this.model.save(data, { error: _.bind(this.validationErrors, this), success: function(){
         me.collection.add(me.model);
         me.close();
